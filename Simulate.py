@@ -1,6 +1,5 @@
 import random
 
-
 def simulate():
     '''
     Simulate the system for one customer.
@@ -15,13 +14,24 @@ def simulate():
     PROB_BUSY = 0.2
     PROB_AVAILABLE = 0.5
     PROB_UNAVAILABLE = 0.3
-    events  = ["Busy", "Available", "Unavailable"]
+    events  = ["BUSY", "AVAILABLE", "UNAVAILABLE"]
     probabilities = [PROB_BUSY, PROB_AVAILABLE, PROB_UNAVAILABLE]
 
-    event = random.choices(events, probabilities)
-    print(event)
-
-    #while (successful != True) or (unsuccessfulCounter != 4):
+    while not successful and unsuccessfulCounter < 4:
+        event = random.choices(events, probabilities)[0]
+        if event == "BUSY":
+            W += Busy()
+            W += End()
+            unsuccessfulCounter += 1
+        elif event == "AVAILABLE":
+            W += Available()
+            W += End()
+            successful = True
+        elif event == "UNAVAILABLE":
+            W += Unavailable()
+            W += End()
+            unsuccessfulCounter += 1
+    return W
 
 
 def Start():
@@ -37,8 +47,12 @@ def Busy():
     '''
     return 3
 def Available():
-    print("Available")
-    # TODO Implement
+    '''
+    Time taken is # X ~ Exponential(1/12)
+    :return: X
+    '''
+    lambdaValue = 1/12
+    return random.expovariate(lambdaValue)
 def Unavailable():
     '''
     Takes 25 additional seconds to wait for 5 rings and conclude that no one will answer

@@ -5,8 +5,10 @@ NUM_SIMULATIONS = 1000
 ## Simulation:
 
 for i in range(NUM_SIMULATIONS):
-    print("Simulation #", i+1)
+    print("Simulation: ", i+1)
     W = simulate()
+    print("W: ", W)
+
 
 
 
