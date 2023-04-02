@@ -6,8 +6,9 @@ NUM_SIMULATIONS = 1000
 wArray = []
 
 for i in range(NUM_SIMULATIONS):
-    print("Simulation: ", i+1)
+    print("Simulation: ", i)
     W = simulate()
+    print("W = ", W)
     wArray.append(W)
 
 ## Analysis:
@@ -23,6 +24,8 @@ print("P[W>40] = ", len([w for w in wArray if w > 40])/len(wArray)) #TODO: Doubl
 # W > w5 W > w6 W > w7
 # TODO Write print statements for these
 #  depict well the right tail of the cumulative distribution function of 𝑊.
+
+print("P[W>")
 
 
 
